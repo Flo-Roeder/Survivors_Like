@@ -1,0 +1,181 @@
+[gd_scene load_steps=11 format=3 uid="uid://ogik4s70pgwl"]
+
+[ext_resource type="Script" path="res://character/enemies/wisp/wisp.gd" id="1_y4chg"]
+[ext_resource type="Texture2D" uid="uid://c3rpyuxdr61vl" path="res://character/enemies/wisp/wisp.png" id="3_qcooy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bgxyo"]
+load_path = "res://.godot/imported/ground_shadow.png-b3dc66499bf155c7737202d29a8835c2.ctex"
+
+[sub_resource type="Animation" id="Animation_y4lve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/SlimeBody:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.625, 2.625)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/PointLight2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_lu163"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/SlimeBody:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.0853777, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.631373, 0.607843, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/SlimeBody:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.625, 2.625), Vector2(3.095, 3.095), Vector2(2.625, 2.625)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaler/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.217638, 1),
+"update": 0,
+"values": [1.0, 1.5, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_71vdi"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/SlimeBody:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6fy2"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/SlimeBody:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(0.594604, 1.46409),
+"update": 0,
+"values": [Vector2(2.625, 2.345), Vector2(3.295, 2.625)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/PointLight2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3.5, 3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6cum"]
+_data = {
+"RESET": SubResource("Animation_y4lve"),
+"hurt": SubResource("Animation_lu163"),
+"idle": SubResource("Animation_71vdi"),
+"walk": SubResource("Animation_l6fy2")
+}
+
+[sub_resource type="Gradient" id="Gradient_k3jui"]
+offsets = PackedFloat32Array(0, 0.256684, 0.449198, 0.566845, 0.684492)
+colors = PackedColorArray(1, 1, 1, 1, 0.901961, 0.741176, 0.443137, 0.498039, 0.831373, 0.54902, 0.027451, 1, 0.961676, 0.897504, 0.778966, 0.227273, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tc7xn"]
+gradient = SubResource("Gradient_k3jui")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Wisp" type="Node2D"]
+script = ExtResource("1_y4chg")
+
+[node name="Scaler" type="Node2D" parent="."]
+modulate = Color(0.87451, 0.533333, 0.309804, 1)
+scale = Vector2(0.6, 0.6)
+
+[node name="GroundShadow" type="Sprite2D" parent="Scaler"]
+modulate = Color(0.447059, 0.478431, 0.588235, 0.592157)
+z_index = -1
+z_as_relative = false
+scale = Vector2(0.833333, 0.705128)
+texture = SubResource("CompressedTexture2D_bgxyo")
+
+[node name="SlimeBody" type="Sprite2D" parent="Scaler"]
+light_mask = 32
+position = Vector2(0, 34)
+scale = Vector2(2.625, 2.625)
+texture = ExtResource("3_qcooy")
+offset = Vector2(0, -36)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scaler"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_j6cum")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="Scaler"]
+position = Vector2(-3.33333, -55)
+scale = Vector2(3, 3)
+range_layer_min = -1
+range_item_cull_mask = 32
+texture = SubResource("GradientTexture2D_tc7xn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+light_mask = 32
+z_index = -1
+offset_left = -150.0
+offset_top = -145.0
+offset_right = 172.0
+offset_bottom = 102.0
+color = Color(0.392157, 0.392157, 0.392157, 1)

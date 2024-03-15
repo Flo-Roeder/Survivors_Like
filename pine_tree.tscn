@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1qpbbk1k4nal"]
 
-[ext_resource type="Texture2D" uid="uid://b7rhtttevhxtj" path="res://characters/ground_shadow.png" id="1_gsgkc"]
-[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://trees/pine_tree.png" id="2_8vhx4"]
+[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://tutorial/trees/pine_tree.png" id="2_siafj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bgxyo"]
+load_path = "res://.godot/imported/ground_shadow.png-b3dc66499bf155c7737202d29a8835c2.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kevo"]
 radius = 20.0998
@@ -11,11 +13,11 @@ radius = 20.0998
 [node name="GroundShadow" type="Sprite2D" parent="."]
 modulate = Color(0.745098, 0.909804, 0.85098, 1)
 scale = Vector2(0.846154, 0.846154)
-texture = ExtResource("1_gsgkc")
+texture = SubResource("CompressedTexture2D_bgxyo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7kevo")
 
 [node name="PineTree" type="Sprite2D" parent="."]
 position = Vector2(-1, -63)
-texture = ExtResource("2_8vhx4")
+texture = ExtResource("2_siafj")

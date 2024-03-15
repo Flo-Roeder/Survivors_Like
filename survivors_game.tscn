@@ -1,30 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://cevcgag1vn3xh"]
+[gd_scene load_steps=7 format=3 uid="uid://cevcgag1vn3xh"]
 
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_3amq1"]
-[ext_resource type="PackedScene" uid="uid://kvqsvh621pa" path="res://player.tscn" id="1_d2lqw"]
+[ext_resource type="PackedScene" uid="uid://kvqsvh621pa" path="res://character/player/player.tscn" id="1_d2lqw"]
 [ext_resource type="PackedScene" uid="uid://b1qpbbk1k4nal" path="res://pine_tree.tscn" id="2_k0gsi"]
 
 [sub_resource type="Curve2D" id="Curve2D_xohj4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -293, -191, 0, 0, 0, 0, 2170, -194, 0, 0, 0, 0, 2166, 1267, 0, 0, 0, 0, -296, 1263, 0, 0, 0, 0, -293, -194, 0, 0, 0, 0, -293, -194, 0, 0, 0, 0, -293, -191)
+"points": PackedVector2Array(0, 0, 0, 0, 3853, -185, 0, 0, 0, 0, 3911, 2479, 0, 0, 0, 0, -196, 2416, 0, 0, 0, 0, -220, -184, 0, 0, 0, 0, 3853, -185)
 }
-point_count = 7
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3b7t"]
+size = Vector2(3757, 47.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk703"]
+size = Vector2(69, 2490.5)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_3amq1")
 
-[node name="Player" parent="." instance=ExtResource("1_d2lqw")]
-position = Vector2(1053, 563)
-
-[node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-1053, -563)
+[node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_xohj4")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(-293, -191)
-rotation = -0.00121803
+position = Vector2(3853, -185)
+rotation = 1.54903
+
+[node name="Player" parent="." instance=ExtResource("1_d2lqw")]
+unique_name_in_owner = true
+position = Vector2(1712, 1480)
 
 [node name="PineTree" parent="." instance=ExtResource("2_k0gsi")]
 position = Vector2(685, 717)
@@ -49,10 +55,13 @@ position = Vector2(1539, 645)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
+follow_viewport_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1924.0
-offset_bottom = 1087.0
+light_mask = 33
+offset_right = 3674.0
+offset_bottom = 2322.0
+color = Color(0.160784, 0.294118, 0.278431, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -63,6 +72,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
+light_mask = 0
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -87,6 +97,34 @@ theme_override_font_sizes/font_size = 236
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.2
+blend_mode = 1
+
+[node name="Boundings" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundings"]
+position = Vector2(1846, 2337)
+shape = SubResource("RectangleShape2D_h3b7t")
+debug_color = Color(0.658824, 0.513726, 0.0392157, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundings"]
+position = Vector2(-25, 1083)
+shape = SubResource("RectangleShape2D_nk703")
+debug_color = Color(0.658824, 0.513726, 0.0392157, 0.419608)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundings"]
+position = Vector2(3699.5, 1127.25)
+shape = SubResource("RectangleShape2D_nk703")
+debug_color = Color(0.658824, 0.513726, 0.0392157, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundings"]
+position = Vector2(1815, -14)
+shape = SubResource("RectangleShape2D_h3b7t")
+debug_color = Color(0.658824, 0.513726, 0.0392157, 0.419608)
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
