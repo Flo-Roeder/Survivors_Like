@@ -4,6 +4,8 @@ var travelled_distance : float
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var animation_player = $Projectile/AnimationPlayer
 
+@export var damage = 1
+
 var has_hit : bool
 
 func _physics_process(delta):
@@ -24,4 +26,4 @@ func _on_body_entered(body):
 	collision_shape_2d.queue_free()
 	animation_player.play("explode")
 	if body.has_method("take_damage"):
-		body.take_damage()
+		body.take_damage(GlobalData.damage_calculation(damage))

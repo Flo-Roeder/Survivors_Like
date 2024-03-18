@@ -6,6 +6,22 @@
 [sub_resource type="Animation" id="Animation_hed62"]
 length = 0.001
 
+[sub_resource type="Animation" id="Animation_wolc3"]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orb:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.921569, 0, 0.164706, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_sablf"]
 resource_name = "idle"
 length = 3.0
@@ -52,22 +68,6 @@ resource_name = "walk"
 length = 0.6
 loop_mode = 1
 step = 0.0333333
-
-[sub_resource type="Animation" id="Animation_wolc3"]
-resource_name = "hurt"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Orb:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.921569, 0, 0.164706, 1), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wrcpu"]
 _data = {

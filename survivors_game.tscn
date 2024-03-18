@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_3amq1"]
 [ext_resource type="PackedScene" uid="uid://kvqsvh621pa" path="res://character/player/player.tscn" id="1_d2lqw"]
-[ext_resource type="PackedScene" uid="uid://b1qpbbk1k4nal" path="res://pine_tree.tscn" id="2_k0gsi"]
+[ext_resource type="PackedScene" uid="uid://dplpi811aevll" path="res://game_over.tscn" id="3_jserl"]
 
 [sub_resource type="Curve2D" id="Curve2D_xohj4"]
 _data = {
@@ -32,27 +32,6 @@ rotation = 1.54903
 unique_name_in_owner = true
 position = Vector2(1712, 1480)
 
-[node name="PineTree" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(685, 717)
-
-[node name="PineTree2" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(1537, 212)
-
-[node name="PineTree3" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(1633, 284)
-
-[node name="PineTree4" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(410, 188)
-
-[node name="PineTree5" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(295, 821)
-
-[node name="PineTree6" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(1211, 927)
-
-[node name="PineTree7" parent="." instance=ExtResource("2_k0gsi")]
-position = Vector2(1539, 645)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enabled = true
@@ -67,36 +46,8 @@ color = Color(0.160784, 0.294118, 0.278431, 1)
 wait_time = 0.2
 autostart = true
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameOver" parent="." instance=ExtResource("3_jserl")]
 unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-light_mask = 0
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.529412)
-
-[node name="Label" type="Label" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -11.5
-offset_right = 43.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 236
-text = "Game Over"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2
@@ -126,5 +77,4 @@ position = Vector2(1815, -14)
 shape = SubResource("RectangleShape2D_h3b7t")
 debug_color = Color(0.658824, 0.513726, 0.0392157, 0.419608)
 
-[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -68,6 +68,7 @@ range_layer_min = -1
 texture = SubResource("GradientTexture2D_vmleb")
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.34
 autostart = true
 

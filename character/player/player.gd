@@ -1,13 +1,18 @@
 extends CharacterBody2D
 
-signal game_over
+#used for better performance
+var speed
 
-@export var health = 100.0
-@export var speed = 600
 
-func _onready():
+
+func _ready():
 	%Orb.play_idle_animation()
 
+	GlobalXp.xp_changed.connect(update_xp)
+	GlobalData.stats_changed.connect(update_stats)
+	update_xp()
+	update_stats()
+	
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction* speed
@@ -21,7 +26,17 @@ func _physics_process(delta):
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
 		%Orb.play_hurt_animation()
-		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
-		%ProgressBar.value = health
-		if health <= 0.0:
-			game_over.emit()
+		
+		GlobalData.stat_change_flat(GlobalData.stat_name.health,-DAMAGE_RATE * overlapping_mobs.size() * delta)
+
+
+func update_xp():
+	var progress = GlobalXp.how_much_to_next_level()
+	%ProgressBar2.value = progress
+	%ProgressBar2/Label.text = "LEVEL " + str(GlobalXp.level)
+
+func update_stats():
+	speed = GlobalData.speed
+
+	%ProgressBar.value = GlobalData.health/GlobalData.max_health*100
+	%ProgressBar/Label.text = str(GlobalData.health as int) + " / " + str(GlobalData.max_health as int)

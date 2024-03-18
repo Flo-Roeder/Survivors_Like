@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kvqsvh621pa"]
+[gd_scene load_steps=9 format=3 uid="uid://kvqsvh621pa"]
 
 [ext_resource type="Script" path="res://character/player/player.gd" id="1_2flbg"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://character/player/orb.tscn" id="2_6p5om"]
@@ -23,8 +23,11 @@ corner_radius_bottom_left = 8
 bg_color = Color(0.388235, 0.8, 0.372549, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7mgh"]
+bg_color = Color(0.717647, 0.443137, 0.980392, 1)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 32
@@ -54,13 +57,53 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_r3sey")
 debug_color = Color(0.937255, 0, 0.623529, 0.419608)
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = -123.0
-offset_top = -150.0
-offset_right = 127.0
-offset_bottom = -123.0
+offset_left = 46.0
+offset_top = 33.0
+offset_right = 351.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_hhr7s")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kkuox")
 value = 100.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar2" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 46.0
+offset_top = 96.0
+offset_right = 351.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_hhr7s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y7mgh")
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_right = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL X"
+horizontal_alignment = 2

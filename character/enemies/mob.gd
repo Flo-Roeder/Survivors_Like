@@ -1,19 +1,20 @@
 extends CharacterBody2D
 
-var health = 3
+@export var health = 3
+@export var xp_gain = 20
 
 @onready var player = get_node("/root/Game/Player")
 
 func _ready():
 	%Wisp.play_walk()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * 300
 	move_and_slide()
 
-func take_damage():
-	health -= 1
+func take_damage(damage : float):
+	health -= damage
 	%Wisp.play_hurt()
 	
 	if health <= 0:
@@ -23,3 +24,5 @@ func take_damage():
 		var smoke = SMOKE_EXPLOSION.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+		
+		GlobalXp.add_xp(xp_gain)		

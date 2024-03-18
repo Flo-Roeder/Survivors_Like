@@ -77,7 +77,12 @@ Settings/Show_Tooltips=true
 config/name="Survivors_Like"
 run/main_scene="res://survivors_game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.png"
+config/icon="res://art/orb.png"
+
+[autoload]
+
+GlobalXp="*res://autoload/GlobalXp.gd"
+GlobalData="*res://autoload/GlobalData.gd"
 
 [display]
 
