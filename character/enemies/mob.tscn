@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://character/enemies/wisp/wisp.tscn" id="2_bpdk7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sq0du"]
-radius = 18.0278
+radius = 106.888
 
 [node name="Mob" type="CharacterBody2D"]
 collision_layer = 2

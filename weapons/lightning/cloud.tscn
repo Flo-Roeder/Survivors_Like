@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3kxr2gkx1c2l"]
+
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_qwe0b"]
+[ext_resource type="PackedScene" uid="uid://p3ma8bg4l62q" path="res://weapons/lightning/lightning.tscn" id="2_vbe0r"]
+[ext_resource type="Texture2D" uid="uid://cvg3bxn8haue7" path="res://weapons/lightning/cloud.png" id="3_c0os2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qesu0"]
+radius = 300.0
+
+[sub_resource type="Animation" id="Animation_udgv7"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1.8025, 0.574349, 1.86607, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.925, 1), Vector2(1, 1.1), Vector2(0.885, 0.83), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fefq3"]
+_data = {
+"idle": SubResource("Animation_udgv7")
+}
+
+[sub_resource type="Gradient" id="Gradient_tt7n2"]
+offsets = PackedFloat32Array(0.187166, 0.411765, 0.647059)
+colors = PackedColorArray(1, 1, 1, 1, 0.999473, 0.592143, 0.195482, 0.439655, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vmleb"]
+gradient = SubResource("Gradient_tt7n2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Cloud" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_qwe0b")
+fire_rate = 1.1
+projectile = ExtResource("2_vbe0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qesu0")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.34
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+offset_left = -219.0
+offset_top = -362.0
+offset_right = 619.0
+offset_bottom = 386.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_c0os2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_fefq3")
+}
+autoplay = "idle"
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponSprite"]
+unique_name_in_owner = true
+position = Vector2(36, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="WeaponSprite"]
+visible = false
+position = Vector2(3, -1)
+scale = Vector2(1.4375, 1.53125)
+range_layer_min = -1
+texture = SubResource("GradientTexture2D_vmleb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

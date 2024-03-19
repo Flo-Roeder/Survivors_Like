@@ -77,7 +77,9 @@ Settings/Show_Tooltips=true
 config/name="Survivors_Like"
 run/main_scene="res://survivors_game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/image="res://art/logo_black.png"
 config/icon="res://art/orb.png"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmoo5pu42iqkw"]
+[gd_scene load_steps=9 format=3 uid="uid://ced1iw3a7ghh5"]
 
-[ext_resource type="Script" path="res://weapons/flame/flame.gd" id="1_dr280"]
-[ext_resource type="Texture2D" uid="uid://byedyerr1qtk" path="res://weapons/flame/flame.png" id="2_b5ify"]
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_jfm8t"]
+[ext_resource type="PackedScene" uid="uid://btxm8a26ncq43" path="res://weapons/flame/fireball.tscn" id="2_4w1g4"]
+[ext_resource type="Texture2D" uid="uid://byedyerr1qtk" path="res://weapons/flame/flame.png" id="3_dmkyc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qesu0"]
-radius = 460.184
+radius = 300.0
 
 [sub_resource type="Animation" id="Animation_udgv7"]
 resource_name = "idle"
@@ -39,33 +40,12 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Flame" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_dr280")
+script = ExtResource("1_jfm8t")
+fire_rate = 2.3
+projectile = ExtResource("2_4w1g4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qesu0")
-
-[node name="Flame" type="Sprite2D" parent="."]
-position = Vector2(93, -8)
-texture = ExtResource("2_b5ify")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Flame"]
-libraries = {
-"": SubResource("AnimationLibrary_fefq3")
-}
-autoplay = "idle"
-
-[node name="WeaponPivot" type="Marker2D" parent="."]
-unique_name_in_owner = true
-
-[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot"]
-unique_name_in_owner = true
-position = Vector2(96, 1)
-
-[node name="PointLight2D" type="PointLight2D" parent="WeaponPivot/ShootingPoint"]
-position = Vector2(1.78814e-07, -9)
-scale = Vector2(1.4375, 1.53125)
-range_layer_min = -1
-texture = SubResource("GradientTexture2D_vmleb")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -80,5 +60,25 @@ offset_top = -362.0
 offset_right = 619.0
 offset_bottom = 386.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(-5, -6)
+texture = ExtResource("3_dmkyc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_fefq3")
+}
+autoplay = "idle"
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponSprite"]
+unique_name_in_owner = true
+position = Vector2(36, 6)
+
+[node name="PointLight2D" type="PointLight2D" parent="WeaponSprite"]
+position = Vector2(3, -1)
+scale = Vector2(1.4375, 1.53125)
+range_layer_min = -1
+texture = SubResource("GradientTexture2D_vmleb")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

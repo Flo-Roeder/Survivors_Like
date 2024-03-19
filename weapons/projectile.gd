@@ -2,22 +2,21 @@ extends Area2D
 
 var travelled_distance : float
 @onready var collision_shape_2d = $CollisionShape2D
-@onready var animation_player = $Projectile/AnimationPlayer
+@onready var animation_player = $Scaler/Projectile/AnimationPlayer
 
 @export var damage = 1
-
+@export var speed : int = 1000
+@export var max_range : int = 1200
 var has_hit : bool
 
 func _physics_process(delta):
-	const SPEED = 1000
-	const RANGE = 1200
 	
 	var direction = Vector2.RIGHT.rotated(rotation)
 	if !has_hit:
-		position += direction * SPEED * delta
+		position += direction * speed * delta
 	
-	travelled_distance += SPEED * delta
-	if travelled_distance > RANGE:
+	travelled_distance += speed * delta
+	if travelled_distance > max_range:
 		queue_free()
 
 

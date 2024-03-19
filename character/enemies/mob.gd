@@ -2,15 +2,15 @@ extends CharacterBody2D
 
 @export var health = 3
 @export var xp_gain = 20
-
+@export var speed = 300
 @onready var player = get_node("/root/Game/Player")
-
 func _ready():
-	%Wisp.play_walk()
+	pass
+	#%Wisp.play_walk()
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 300
+	velocity = direction * speed
 	move_and_slide()
 
 func take_damage(damage : float):

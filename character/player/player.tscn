@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://kvqsvh621pa"]
+[gd_scene load_steps=10 format=3 uid="uid://kvqsvh621pa"]
 
 [ext_resource type="Script" path="res://character/player/player.gd" id="1_2flbg"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://character/player/orb.tscn" id="2_6p5om"]
-[ext_resource type="PackedScene" uid="uid://cmoo5pu42iqkw" path="res://weapons/flame/flame.tscn" id="3_j4ktq"]
+[ext_resource type="PackedScene" uid="uid://ced1iw3a7ghh5" path="res://weapons/flame/flame.tscn" id="3_j4ktq"]
+[ext_resource type="PackedScene" uid="uid://d3kxr2gkx1c2l" path="res://weapons/lightning/cloud.tscn" id="4_gvjms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6jnc"]
 radius = 18.0
@@ -39,9 +40,6 @@ unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-
-[node name="Flame" parent="." instance=ExtResource("3_j4ktq")]
-position = Vector2(-1, -39)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -107,3 +105,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "LEVEL X"
 horizontal_alignment = 2
+
+[node name="WeaponHolder" type="Node2D" parent="."]
+position = Vector2(-1, -39)
+
+[node name="Cloud" parent="WeaponHolder" instance=ExtResource("4_gvjms")]
+position = Vector2(-113, -12)
+
+[node name="Flame" parent="WeaponHolder" instance=ExtResource("3_j4ktq")]
+position = Vector2(101, -4)

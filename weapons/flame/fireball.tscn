@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://1tvkngq5y6fs"]
+[gd_scene load_steps=7 format=3 uid="uid://btxm8a26ncq43"]
 
-[ext_resource type="Script" path="res://weapons/flame/fireball.gd" id="1_eo08a"]
-[ext_resource type="Texture2D" uid="uid://cs7v3e5u35n3b" path="res://weapons/flame/fireball.png" id="2_rxnxf"]
+[ext_resource type="Script" path="res://weapons/projectile.gd" id="1_tisvd"]
+[ext_resource type="Texture2D" uid="uid://cs7v3e5u35n3b" path="res://weapons/flame/fireball.png" id="2_7ibqm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33wp8"]
+radius = 56.0357
 
 [sub_resource type="Animation" id="Animation_156m4"]
 resource_name = "explode"
@@ -54,9 +57,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.46229, 0.329878),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.494118, 0.494118, 0.494118, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.843137, 0.843137, 0.843137, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qwhs8"]
@@ -65,29 +68,30 @@ _data = {
 "idle": SubResource("Animation_kyyav")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_33wp8"]
-radius = 16.0312
-
 [node name="FireBall" type="Area2D"]
 top_level = true
 collision_layer = 0
-collision_mask = 3
-script = ExtResource("1_eo08a")
+collision_mask = 2
+script = ExtResource("1_tisvd")
+speed = 500
 
-[node name="Projectile" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_33wp8")
+
+[node name="Scaler" type="Node2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="Projectile" type="Sprite2D" parent="Scaler"]
+modulate = Color(0.991334, 0.991334, 0.991334, 1)
 position = Vector2(0, 2)
-rotation = 3.97237
-scale = Vector2(0.692342, 0.692342)
-texture = ExtResource("2_rxnxf")
+rotation = -2.31082
+scale = Vector2(0.687025, 0.687025)
+texture = ExtResource("2_7ibqm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Projectile"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scaler/Projectile"]
 libraries = {
 "": SubResource("AnimationLibrary_qwhs8")
 }
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_33wp8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,7 +10,7 @@ var max_health = 100.0
 var damage_mult = 1.0
 var crit_chance = 10.0
 var crit_mult = 1.5
-
+var range_mult = 1
 #take all the stats names to handle the switch
 enum stat_name {
 	speed,
@@ -19,7 +19,8 @@ enum stat_name {
 	max_health,
 	damage_mult,
 	crit_chance,
-	crit_mult
+	crit_mult,
+	range_mult
 }
 
 func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : float):
@@ -39,6 +40,8 @@ func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : float):
 			crit_chance += amount
 		stat_name.crit_mult:
 			crit_mult += amount
+		stat_name.range_mult:
+			range_mult += amount
 
 	#emit the signal for scripts to react
 	stats_changed.emit()
@@ -61,9 +64,11 @@ func stat_change_proc(_stat_name : GlobalData.stat_name, amount : float):
 		stat_name.damage_mult:
 			damage_mult *= change
 		stat_name.crit_chance:
-			crit_chance *= amount
+			crit_chance *= change
 		stat_name.crit_mult:
-			crit_mult *= amount
+			crit_mult *= change
+		stat_name.range_mult:
+			range_mult *= change
 
 	#emit the signal for scripts to react
 	stats_changed.emit()
