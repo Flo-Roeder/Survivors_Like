@@ -59,8 +59,6 @@ func set_weapon_stats():
 	#range
 	target_range = base_range * GlobalData.range_mult
 	collision_shape_2d.shape.radius = target_range-50
-	printerr("collision radius: " + str(target_range))
-	printerr("global: " + str(GlobalData.range_mult))
 
 func _on_timer_timeout():
 	if has_target:

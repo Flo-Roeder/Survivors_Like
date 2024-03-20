@@ -23,7 +23,9 @@ enum stat_name {
 	range_mult
 }
 
-func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : float):
+func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : int):
+	printerr("flat")
+	printerr(str(_stat_name)+str(amount))
 	#apply to correct variable
 	match (_stat_name):
 		stat_name.speed:
@@ -42,14 +44,15 @@ func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : float):
 			crit_mult += amount
 		stat_name.range_mult:
 			range_mult += amount
-
 	#emit the signal for scripts to react
 	stats_changed.emit()
 
-func stat_change_proc(_stat_name : GlobalData.stat_name, amount : float):
+func stat_change_proc(_stat_name : GlobalData.stat_name, amount : int):
+	printerr("proc")
+	printerr(str(_stat_name)+str(amount))
 	#calculate the change amount to a procentual factor and then apply on switch
 	#i.e. 10 -> 1,10
-	var	change = (100+amount)/100
+	var	change = (100+amount)/100.00
 	#apply to correct variable
 	match (_stat_name):
 		stat_name.speed:
@@ -73,7 +76,25 @@ func stat_change_proc(_stat_name : GlobalData.stat_name, amount : float):
 	#emit the signal for scripts to react
 	stats_changed.emit()
 
-
+func get_stat(_stat_name : GlobalData.stat_name):
+	match (_stat_name):
+		stat_name.speed:
+			return speed
+		stat_name.attack_speed_mult:
+			return attack_speed_mult
+		stat_name.health:
+			return health
+		stat_name.max_health:
+			return max_health
+		stat_name.damage_mult:
+			return damage_mult
+		stat_name.crit_chance:
+			return crit_chance
+		stat_name.crit_mult:
+			return crit_mult
+		stat_name.range_mult:
+			return range_mult
+			
 func get_fire_rate(base : float):
 	var change = base * attack_speed_mult
 	return 1 / change 
