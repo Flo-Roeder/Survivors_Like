@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn82eo2bkqasn"]
+
+[ext_resource type="Script" path="res://upgrades/level_up/level_up.gd" id="1_ungyf"]
+[ext_resource type="PackedScene" uid="uid://da602vuj86g65" path="res://upgrades/upgrades/upgrade_container.tscn" id="2_wp1fw"]
+[ext_resource type="PackedScene" uid="uid://dpu21xa658qpt" path="res://upgrades/upgrades/stat_upgrades/damage_mult_proc.tscn" id="3_hxc6t"]
+[ext_resource type="PackedScene" uid="uid://7ubmmujm3und" path="res://upgrades/upgrades/stat_upgrades/damage_mult_flat.tscn" id="4_4p55d"]
+[ext_resource type="PackedScene" uid="uid://d2j07dfiamp0t" path="res://upgrades/upgrades/stat_upgrades/attack_Speed_mult_proc.tscn" id="5_1nvmm"]
+[ext_resource type="PackedScene" uid="uid://bnqsonopcckwp" path="res://upgrades/upgrades/stat_upgrades/max_healt_flat.tscn" id="6_rk24m"]
+[ext_resource type="PackedScene" uid="uid://ctg208m0ymleb" path="res://upgrades/upgrades/weapons/flame.tscn" id="7_viy8r"]
+
+[node name="LevelUp_Screen" type="CanvasLayer"]
+script = ExtResource("1_ungyf")
+upgrade_amount = 3
+stat_upgrades = Array[PackedScene]([ExtResource("3_hxc6t"), ExtResource("4_4p55d"), ExtResource("5_1nvmm"), ExtResource("6_rk24m"), ExtResource("7_viy8r"), ExtResource("7_viy8r"), ExtResource("7_viy8r")])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="Upgrade_Container" parent="MarginContainer/BoxContainer" instance=ExtResource("2_wp1fw")]
+layout_mode = 2
+
+[node name="Upgrade_Container2" parent="MarginContainer/BoxContainer" instance=ExtResource("2_wp1fw")]
+layout_mode = 2
+
+[node name="Upgrade_Container3" parent="MarginContainer/BoxContainer" instance=ExtResource("2_wp1fw")]
+layout_mode = 2

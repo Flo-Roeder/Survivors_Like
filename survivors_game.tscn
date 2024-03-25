@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cevcgag1vn3xh"]
+[gd_scene load_steps=10 format=3 uid="uid://cevcgag1vn3xh"]
 
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_3amq1"]
 [ext_resource type="PackedScene" uid="uid://kvqsvh621pa" path="res://character/player/player.tscn" id="1_d2lqw"]
 [ext_resource type="PackedScene" uid="uid://dplpi811aevll" path="res://game_over.tscn" id="3_jserl"]
 [ext_resource type="Script" path="res://stats_panel.gd" id="4_s5cc7"]
 [ext_resource type="Script" path="res://stat_showing.gd" id="5_tqvw1"]
+[ext_resource type="PackedScene" uid="uid://nnxl4agrx65s" path="res://character/enemies/mob.tscn" id="6_lnqyx"]
 
 [sub_resource type="Curve2D" id="Curve2D_xohj4"]
 _data = {
@@ -233,5 +234,8 @@ layout_mode = 2
 text = "amount
 "
 horizontal_alignment = 2
+
+[node name="Mob" parent="." instance=ExtResource("6_lnqyx")]
+position = Vector2(1149, 1693)
 
 [connection signal="timeout" from="Spwan_Path2D/Spwan_Timer" to="." method="_on_spwan_timer_timeout"]

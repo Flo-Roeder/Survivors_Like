@@ -3,7 +3,10 @@ extends CanvasLayer
 @onready var box_container = $MarginContainer/BoxContainer
 
 @export var upgrade_amount : int
-@export var upgrade_instance : PackedScene
+
+
+@export var stat_upgrades : Array[PackedScene]
+
 func _ready():
 	visible = false
 	GlobalXp.level_up.connect(level_up)
@@ -22,10 +25,12 @@ func show_upgrades():
 	cleanup_container()
 
 	for x in upgrade_amount:
-		var instance = upgrade_instance.instantiate()
+		var upgrade = stat_upgrades.pick_random()
+		var instance = upgrade.instantiate()
 		box_container.add_child(instance)
 		instance.upgrade_picked.connect(pick_upgrade)
 		
+		#stat_upgrades.erase(upgrade)
 		
 func pick_upgrade():
 	printerr("upgrade choosen")

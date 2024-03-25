@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2j07dfiamp0t"]
+
+[ext_resource type="Script" path="res://upgrades/upgrades/upgrade.gd" id="1_gsw7t"]
+[ext_resource type="PackedScene" uid="uid://dxtr5oeix48dx" path="res://upgrades/upgrades/upgrade_visual_container.tscn" id="2_6tsrm"]
+[ext_resource type="Texture2D" uid="uid://8rht0wyxjing" path="res://art/icons/attack_speed.png" id="2_r2wx0"]
+[ext_resource type="Texture2D" uid="uid://cat8fr3eftmh6" path="res://art/icons/proc-icon.png" id="2_vdbyy"]
+
+[sub_resource type="Gradient" id="Gradient_bx30v"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.286275, 0.286275, 0.286275, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_28m74"]
+gradient = SubResource("Gradient_bx30v")
+
+[sub_resource type="Gradient" id="Gradient_5b8nj"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.396889, 0.396889, 0.396889, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v8415"]
+gradient = SubResource("Gradient_5b8nj")
+
+[node name="Upgrade_Container" type="MarginContainer"]
+script = ExtResource("1_gsw7t")
+icon_texture = ExtResource("2_r2wx0")
+second_icons = Array[Texture]([ExtResource("2_r2wx0"), ExtResource("2_vdbyy")])
+is_stat_upgrade = true
+stat = 1
+amount_min_max = Vector2i(5, 10)
+is_multiplie = true
+
+[node name="Button" type="TextureButton" parent="."]
+process_mode = 2
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_28m74")
+texture_hover = SubResource("GradientTexture1D_v8415")
+stretch_mode = 0
+
+[node name="Upgrade_Visual_Container" parent="." instance=ExtResource("2_6tsrm")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

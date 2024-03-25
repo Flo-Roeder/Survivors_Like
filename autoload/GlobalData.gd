@@ -4,13 +4,14 @@ signal game_over
 signal stats_changed
 
 var speed : float = 1000.0
-var attack_speed_mult = 1.0
+var attack_speed_mult = 100.0
 var health = 100.0
 var max_health = 100.0
-var damage_mult = 1.0
+var damage_mult = 100.0
 var crit_chance = 10.0
-var crit_mult = 1.5
-var range_mult = 1
+var crit_mult = 150
+var range_mult = 100
+
 #take all the stats names to handle the switch
 enum stat_name {
 	speed,
@@ -96,7 +97,7 @@ func get_stat(_stat_name : GlobalData.stat_name):
 			return range_mult
 			
 func get_fire_rate(base : float):
-	var change = base * attack_speed_mult
+	var change = base * attack_speed_mult / 100
 	return 1 / change 
 
 func heal(amount : float):
@@ -112,10 +113,10 @@ func heal(amount : float):
 		GlobalData.game_over.emit()
 
 func damage_calculation(base : float):
-	var calc_damage = base * damage_mult
+	var calc_damage = base * damage_mult / 100
 	
 	if check_crit():
-		calc_damage *= crit_mult
+		calc_damage *= crit_mult / 100
 	
 	return calc_damage
 

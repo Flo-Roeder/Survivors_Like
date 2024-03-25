@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxtr5oeix48dx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yotax"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clmxf"]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuin5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Upgrade_Visual_Container" type="MarginContainer"]
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 25
+vertical = true
+
+[node name="Image" type="PanelContainer" parent="BoxContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yotax")
+
+[node name="Label" type="Label" parent="BoxContainer/Image"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "here comes an image"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Icon" type="TextureRect" parent="BoxContainer/Image"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Description" type="PanelContainer" parent="BoxContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clmxf")
+
+[node name="Label" type="Label" parent="BoxContainer/Description"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "this is a sample description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Icons" type="PanelContainer" parent="BoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/Icons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="BoxContainer/Icons/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kuin5")
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/Icons/HBoxContainer/PanelContainer"]
+layout_mode = 2
+expand_mode = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="BoxContainer/Icons/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kuin5")
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/Icons/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+expand_mode = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="BoxContainer/Icons/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kuin5")
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/Icons/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+expand_mode = 1

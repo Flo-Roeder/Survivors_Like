@@ -1,3 +1,5 @@
+Node2D
+TextureRect
 VBoxContainer
 Label
 HBoxContainer
@@ -6,10 +8,7 @@ CanvasLayer
 TextureButton
 Button
 PanelContainer
-TextureRect
 ColorRect
 BoxContainer
 MarginContainer
 Container
-Node2D
-PointLight2D

@@ -8,10 +8,9 @@ var level = 1
 var needed_xp = 100.0
 
 func _ready():
-	var level_up_instance = preload("res://ui/level_up/level_up_screen.tscn").instantiate()
+	var level_up_instance = preload("res://upgrades/level_up/level_up_screen.tscn").instantiate()
 	get_tree().root.add_child.call_deferred(level_up_instance)
 
-#	get_tree().add_child(load("res://ui/level_up/level_up_screen.tscn").instatiate())
 
 func add_xp(_xp : int):
 	xp += _xp

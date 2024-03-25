@@ -5,7 +5,7 @@ extends Area2D
 @onready var player = $"../.."
 
 @export_group("base_stats")
-@export var fire_rate : float = 5
+@export var fire_rate : float = 5 #shoots per second
 
 @export var base_range = 300
 var target_range

@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpu21xa658qpt"]
+
+[ext_resource type="Script" path="res://upgrades/upgrades/upgrade.gd" id="1_virak"]
+[ext_resource type="PackedScene" uid="uid://dxtr5oeix48dx" path="res://upgrades/upgrades/upgrade_visual_container.tscn" id="2_gks6e"]
+[ext_resource type="Texture2D" uid="uid://uklvyaobh4fi" path="res://art/icons/damage_up_icon.png" id="2_layfj"]
+[ext_resource type="Texture2D" uid="uid://ldc5qeakdima" path="res://art/icons/sword_icon.png" id="3_ggvfn"]
+[ext_resource type="Texture2D" uid="uid://cat8fr3eftmh6" path="res://art/icons/proc-icon.png" id="4_jynrs"]
+
+[sub_resource type="Gradient" id="Gradient_bx30v"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.286275, 0.286275, 0.286275, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_28m74"]
+gradient = SubResource("Gradient_bx30v")
+
+[sub_resource type="Gradient" id="Gradient_5b8nj"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.396889, 0.396889, 0.396889, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v8415"]
+gradient = SubResource("Gradient_5b8nj")
+
+[node name="Upgrade_Container" type="MarginContainer"]
+script = ExtResource("1_virak")
+icon_texture = ExtResource("2_layfj")
+second_icons = Array[Texture]([ExtResource("3_ggvfn"), ExtResource("4_jynrs")])
+is_stat_upgrade = true
+stat = 4
+amount_min_max = Vector2i(5, 5)
+is_multiplie = true
+
+[node name="Button" type="TextureButton" parent="."]
+process_mode = 2
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_28m74")
+texture_hover = SubResource("GradientTexture1D_v8415")
+stretch_mode = 0
+
+[node name="Upgrade_Visual_Container" parent="." instance=ExtResource("2_gks6e")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
