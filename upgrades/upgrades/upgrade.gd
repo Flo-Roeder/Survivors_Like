@@ -22,12 +22,6 @@ var amount : int
 @export var upgrade_name : String
 @export var weapon : PackedScene
 
-var upgrade_level = {
-	1 : "1",
-	2 : "2",
-	3 : "3"
-}
-
 func _ready():
 	random_upgrade()
 
@@ -87,9 +81,8 @@ func show_upgrade_description():
 	
 	if is_weapon_upgrade:
 		var optional_text =""
-		var count = 0
-		if weapon in player.weapons:
-			optional_text = "You already holding this weapon."
+		var count = GlobalData.weapons_max - GlobalData.weapons_array.size()
+		optional_text = "You have {} slots free.".format([count],"{}")
 		description_label.text = "Add a new Weapon. You get a {}. {}".format([upgrade_name, optional_text], "{}")
 
 

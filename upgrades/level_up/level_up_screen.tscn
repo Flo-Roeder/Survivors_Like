@@ -11,7 +11,8 @@
 [node name="LevelUp_Screen" type="CanvasLayer"]
 script = ExtResource("1_ungyf")
 upgrade_amount = 3
-stat_upgrades = Array[PackedScene]([ExtResource("3_hxc6t"), ExtResource("4_4p55d"), ExtResource("5_1nvmm"), ExtResource("6_rk24m"), ExtResource("7_viy8r"), ExtResource("7_viy8r"), ExtResource("7_viy8r")])
+stat_upgrades = Array[PackedScene]([ExtResource("3_hxc6t"), ExtResource("4_4p55d"), ExtResource("5_1nvmm"), ExtResource("6_rk24m")])
+weapon_upgrades = Array[PackedScene]([ExtResource("7_viy8r")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

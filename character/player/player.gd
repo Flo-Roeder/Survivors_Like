@@ -10,9 +10,13 @@ func _ready():
 
 	GlobalXp.xp_changed.connect(update_xp)
 	GlobalData.stats_changed.connect(update_stats)
+	
+	GlobalData.weapons_array = weapons
+	GlobalData.weapons_max = weapon_holder.get_child_count()
+	
 	update_xp()
 	update_stats()
-	
+		
 	instantiate_weapons()
 	
 func _physics_process(_delta):
@@ -54,5 +58,7 @@ func instantiate_weapons():
 		weapon_holder.get_child(x).add_child(weapons[x].instantiate())
 
 func add_weapon(weapon : PackedScene):
-	weapons.append(weapon)
+	GlobalData.weapons_array.append(weapon)
+	weapons = GlobalData.weapons_array
+	#weapons.append(weapon)
 	instantiate_weapons()

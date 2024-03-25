@@ -12,6 +12,9 @@ var crit_chance = 10.0
 var crit_mult = 150
 var range_mult = 100
 
+var weapons_array
+var weapons_max
+
 #take all the stats names to handle the switch
 enum stat_name {
 	speed,
@@ -24,7 +27,7 @@ enum stat_name {
 	range_mult
 }
 
-func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : int):
+func stat_change_flat(_stat_name : GlobalData.stat_name ,amount : float):
 	printerr("flat")
 	printerr(str(_stat_name)+str(amount))
 	#apply to correct variable
